@@ -1,4 +1,4 @@
-﻿using Microsoft.Maui.Controls;
+using Microsoft.Maui.Controls;
 
 namespace gesturerecognizer
 {
@@ -26,12 +26,14 @@ namespace gesturerecognizer
             if (e.Status == GestureStatus.Started)
             {
                 startScale = bot.Scale;
+                currentScale = startScale;
                 startX = bot.TranslationX;
                 startY = bot.TranslationY;
             }
+
             else if (e.Status == GestureStatus.Running)
             {
-                currentScale = Math.Max(1, startScale * e.Scale);
+                /* currentScale = Math.Max(1, startScale * e.Scale);
                 var renderedX = bot.X + startX;
                 var deltaX = renderedX / Width;
                 var deltaWidth = Width / (bot.Width * startScale);
@@ -46,7 +48,18 @@ namespace gesturerecognizer
 
                 bot.TranslationX = Clamp(targetX, -bot.Width * (currentScale - 1), 0);
                 bot.TranslationY = Clamp(targetY, -bot.Height * (currentScale - 1), 0);
-                bot.Scale = currentScale;
+
+
+                bot.Scale = currentScale; */
+
+                // Apply scaling only when the pinch gesture is actively running
+                bot.Scale *= e.Scale;
+                bot.Scale = Math.Max(1, bot.Scale); // Ensure minimum scale is 1
+
+                // Reset translation as pinch may affect the image's position
+                bot.TranslationX = startX * bot.Scale;
+                bot.TranslationY = startY * bot.Scale;
+
             }
             else if (e.Status == GestureStatus.Completed)
             {
