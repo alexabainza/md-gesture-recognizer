@@ -1,21 +1,19 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="gesturerecognizer.MainPage">
 
-    <ScrollView>
-        <Grid Padding="30,0" VerticalOptions="Center">
-            <Grid.GestureRecognizers>
-                <PanGestureRecognizer PanUpdated="PanGestureRecognizer_PanUpdated"/>
-                <PinchGestureRecognizer PinchUpdated="PinchGestureRecognizer_PinchUpdated"/>
-            </Grid.GestureRecognizers>
+    <Grid Padding="30,0" VerticalOptions="Center">
+        <Grid.GestureRecognizers>
+            <PanGestureRecognizer PanUpdated="PanGestureRecognizer_PanUpdated"/>
+            <PinchGestureRecognizer PinchUpdated="PinchGestureRecognizer_PinchUpdated"/>
+        </Grid.GestureRecognizers>
 
-            <Image x:Name="bot"
+        <Image x:Name="bot"
                    Source="dotnet_bot.png"
                    HorizontalOptions="Center"
                    Aspect="AspectFit"
                    SemanticProperties.Description="dot net bot in a race car number eight" />
-        </Grid>
-    </ScrollView>
+    </Grid>
 
 </ContentPage>
